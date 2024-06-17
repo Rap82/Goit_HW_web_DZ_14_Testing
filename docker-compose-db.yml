@@ -1,0 +1,23 @@
+# docker-compose  --env-file .env-dev  up -d 
+version: '1.0.1'
+name: web_hw14
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+  pg:
+    image: postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - ./.postgres-data:/var/lib/postgresql/data
+
+
+
+
+
